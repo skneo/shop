@@ -1,6 +1,6 @@
 <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
     <div class='container-fluid'>
-        <a class='navbar-brand  ' href='/'>StudentShop</a>
+        <a class='navbar-brand' href='/'>Shop</a>
         <!-- <img src='images/logo.png' alt='BrandName' width='30' height='30'> -->
         <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon'></span>
@@ -33,10 +33,13 @@
                     <a id='about' class='nav-link active ' aria-current='page' href='/all_products'>All Products</a>
                 </li>
                 <li class='nav-item'>
-                    <a id='about' class='nav-link active ' aria-current='page' href='about'>About Us</a>
+                    <a id='about' class='nav-link active ' aria-current='page' href='/products/trashed'>Trashed Products</a>
                 </li>
                 <li class='nav-item'>
-                    <a id='contact' class='nav-link active ' aria-current='page' href='contact'>Contact Us</a>
+                    <a id='about' class='nav-link active ' aria-current='page' href='/about'>About Us</a>
+                </li>
+                <li class='nav-item'>
+                    <a id='contact' class='nav-link active ' aria-current='page' href='/contact'>Contact Us</a>
                 </li>
             </ul>
             <?php
@@ -68,7 +71,7 @@
         }
 
         .navbar .navbar-nav .nav-item:not(:last-child) .nav-link {
-            border-right: 1px solid #f8efef;
+            border-right: 1px solid #ffffff;
         }
     }
 </style>

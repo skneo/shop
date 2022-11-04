@@ -42,6 +42,12 @@ class ProductController extends Controller
         $data = compact('products');
         return view('all_products')->with($data);
     }
+    public function trashed_products()
+    {
+        $products = Products::onlyTrashed()->get();
+        $data = compact('products');
+        return view('trashed_products')->with($data);
+    }
     public function edit(Request $request, $id)
     {
         $product = Products::find($id);
@@ -54,7 +60,6 @@ class ProductController extends Controller
         } else {
             $request->session()->flash('danger', 'No product found with id ' . $id);
         }
-
         return redirect('/all_products');
     }
     public function update(Request $request, $id)
@@ -78,16 +83,37 @@ class ProductController extends Controller
         $request->session()->flash('success', $product->prod_name . ' updated!');
         return redirect('/all_products');
     }
-    public function delete(Request $request, $id)
+    public function trash(Request $request, $id)
     {
         $product = Products::find($id);
         if (!is_null($product)) {
             $product->delete();
+            $request->session()->flash('success', $product->prod_name . ' trashed !');
+        } else {
+            $request->session()->flash('danger', 'No product found with id ' . $id);
+        }
+        return redirect('/all_products');
+    }
+    public function restore(Request $request, $id)
+    {
+        $product = Products::withTrashed()->find($id);
+        if (!is_null($product)) {
+            $product->restore();
+            $request->session()->flash('success', $product->prod_name . ' restored !');
+        } else {
+            $request->session()->flash('danger', 'No product found with id ' . $id);
+        }
+        return redirect('/all_products');
+    }
+    public function delete(Request $request, $id)
+    {
+        $product = Products::withTrashed()->find($id);
+        if (!is_null($product)) {
+            $product->forceDelete();
             $request->session()->flash('success', $product->prod_name . ' deleted !');
         } else {
             $request->session()->flash('danger', 'No product found with id ' . $id);
         }
-
         return redirect('/all_products');
     }
 }

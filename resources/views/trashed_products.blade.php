@@ -1,10 +1,16 @@
 @extends('layout.main')
 @section('title')
-All Products
+Trashed Products
 @endsection
 @section('body')
+@foreach (['danger', 'warning', 'success', 'info'] as $msg)
+    @if(Session::has($msg))
+        <div class="alert alert-{{$msg}}" role="alert">
+            {{Session::get($msg)}}
+        </div>
+    @endif
+@endforeach
 <div class="container my-3">
-    <a id='about' class='btn btn-primary btn-sm' aria-current='page' href='/add_product'>Add Product</a>
     <div class="my-3">
         <table id="table_id" class="table-light table table-striped table-bordered w-100">
             <thead>
@@ -26,8 +32,8 @@ All Products
                         <td>{{$product->prod_desc}}</td>
                         <td>{{$product->prod_price}}</td>
                         <td>
-                            <a href="/products/edit/{{$product->id}}" class="btn btn-info" >Edit</a>
-                            <a href="/products/trash/{{$product->id}}" class="btn btn-danger" onclick="return confirm('Are you sure to trash {{$product->prod_name}} ?')">Trash</a>
+                            <a href="/products/restore/{{$product->id}}" class="btn btn-info" >Restore</a>
+                            <a href="/products/delete/{{$product->id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$product->prod_name}} ?')">Delete</a>
                         </td>
                     </tr>   
                 @endforeach

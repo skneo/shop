@@ -11,6 +11,13 @@
 </head>
 <body>
     @include('layout.header')
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+    @if(Session::has($msg))
+        <div class="alert alert-{{$msg}}" role="alert">
+            {{Session::get($msg)}}
+        </div>
+    @endif
+    @endforeach
     @yield('body')
     @include('layout.footer')
     <!-- Option 1: Bootstrap Bundle with Popper -->

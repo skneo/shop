@@ -51,6 +51,9 @@ Route::post('/add_product', [ProductController::class, 'add_product']);
 Route::get('/all_products', [ProductController::class, 'all_products']);
 Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
 Route::post('/products/update/{id}', [ProductController::class, 'update']);
+Route::get('/products/trashed', [ProductController::class, 'trashed_products']);
+Route::get('/products/trash/{id}', [ProductController::class, 'trash']);
+Route::get('/products/restore/{id}', [ProductController::class, 'restore']);
 Route::get('/products/delete/{id}', [ProductController::class, 'delete']);
 // Route::get('/all_products', function () {
 //     $products = Products::all();
